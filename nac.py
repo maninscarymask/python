@@ -15,7 +15,8 @@ def nato_translate_word(word):
 			
 		elif letter.isalpha() == True:
 			output.append(nato_alphabet[letter])
-	lbl.configure(text=output)
+	lbl02.configure(text=output, background='white')
+	print(output)
 	return output
 
 
@@ -25,21 +26,20 @@ def nato_translate_sentence(sentence):
 	sentence = sentence.split()
 	for word in sentence:
 		output.append(nato_alphabet[word[0]])
-	lbl.configure(text=output)
+	lbl02.configure(text=output, background='white')
+	print(output)
 	return output
 
-#user_input = input("word: ")
 
 def main():
 	# If there's a space, it's a phrase, otherwise it's a word or acronym
 	user_input = e01.get()
 	if " " in user_input:
-		output = nato_translate_sentence(user_input)
-		#print(output)
+		nato_translate_sentence(user_input)
 	else:
-		output = nato_translate_word(user_input)
-		#print(output)
+		nato_translate_word(user_input)
 
+# background color (useful if .Xresources is something unusable in Tk)
 bgc="#cccccc"
 
 # Window
@@ -47,30 +47,30 @@ window=Tk()
 window.configure(background = bgc)
 
 # Labels
-lbl=Label(window, text="Word or Sentence")
-lbl.configure(background = 'white', foreground='black')
+lbl01=Label(window, text="output", background = bgc, foreground='black')	# "output" label
+lbl02=Label(window, text="", background = bgc, foreground='black')		# text from functions
+lbl03=Label(window, text="input", background = bgc, foreground='black')		# "input" label
 
 # Buttons
-btn01=Button(window, text="Convert", background=bgc, foreground='black', command=main)
-btn02=Button(window, text="Quit", background=bgc, foreground='black', command=window.quit)
+btn01=Button(window, text="Convert", background=bgc, foreground='black', command=main)		# convert button
+btn02=Button(window, text="Quit", background=bgc, foreground='black', command=window.quit)	# quit button
 
 # Text entry
-e01 = Entry(window)
-e01.configure(background = 'white', foreground='black')
-#e01.bind("<Return>", main)
-#e01.pack()
+e01 = Entry(window, background = 'white', foreground='black')			# text entry
 
 # Placement
-btn01.place(x=60, y=100)
-btn02.place(x=120, y=100)
-e01.place(x=50, y=50)
-lbl.place(x=50, y=150)
+lbl01.grid(row=0, column=0)
+lbl02.grid(row=0, column=1)
+
+e01.grid(row=1, column=1)
+lbl03.grid(row=1, column=0)
+
+btn01.grid(row=2, column=0)
+btn02.grid(row=2, column=1)
 
 # Window configuration
 window.title('NATO Alphabet Converter')
-window.geometry("300x200+10+10")
 window.mainloop()
 
 if __name__ == "__main__":
 	main()
-
