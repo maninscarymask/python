@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-#import difflib
-#from difflib import ndiff
-#import itertools
 from itertools import permutations
 import re
 
@@ -11,7 +8,6 @@ import re
 
 # Take user input
 word = input("Enter word: ")
-#word = "draw"
 
 def check_if_string_in_file(file_name, string_to_search):
 	with open(file_name, 'r') as read_obj:
@@ -31,7 +27,8 @@ for i in range(2,len(word)+1):
 	# removing duplicates by converting from a list to a dictionary to a list again
 	scramble = list(dict.fromkeys(scramble))
 
-print(scramble)
+# This is to check we're getting full permutations with no duplicates
+#print(scramble)
 
 # a new list for the actual words
 word_list = []
@@ -39,7 +36,6 @@ word_list = []
 def main():
 	# within the scramble list
 	for element in scramble:
-		#print(element)
 		# check to see if the element exists on a line
 		if check_if_string_in_file('dict.txt', element):
 			# add the matching word to the word_list
