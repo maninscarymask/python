@@ -4,7 +4,15 @@ user_input = input("word: ")
 
 letter_count = len(user_input)
 
+# Clean up the user input word
 dictionary = {}
+for letter in user_input:
+	if letter in dictionary:
+		dictionary[letter] += 1
+	else:
+		dictionary[letter] = 1
+dictionary_items = dictionary.items()
+dictionary = sorted(dictionary_items)
 
 # Split and sort words to letter, counting each letter each time it occurs
 def deconstruct(word):
@@ -20,7 +28,6 @@ def deconstruct(word):
 	# Take the items, make them sortable, then sort them
 	hold_items = hold.items()
 	hold = sorted(hold_items)
-	dictionary = hold
 	return hold
 
 def check_file(word):
@@ -42,10 +49,10 @@ def check_file(word):
 			# Make sorted split of word
 			test = deconstruct(line)
 
-			if test == dictionary:
+			if test == word:
 				# Add to the list
 				word_list.append(test)
-				print(test)
+				print(line)
 	
 
 	# complete list of length-matched words
@@ -58,13 +65,12 @@ def check_file(word):
 
 def main():
 	# Split the user_input to a dictionary
-	ui = deconstruct(user_input)
+	#ui = deconstruct(user_input)
 
 	# Print the deconstructed user input
-	print(ui)
+	print(dictionary)
 
-	check_file(ui)
+	check_file(dictionary)
 
 if __name__ == "__main__":
 	main()
-
