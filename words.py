@@ -1,18 +1,7 @@
 #!/usr/bin/env python3
 
-filename = "words_alpha.txt"
-user_input = input("word: ")
-letter_count = len(user_input)
 
-# Clean up the user input word
-dictionary = {}
-for letter in user_input:
-	if letter in dictionary:
-		dictionary[letter] += 1
-	else:
-		dictionary[letter] = 1
-dictionary_items = dictionary.items()
-dictionary = sorted(dictionary_items)
+filename = "words_alpha.txt"
 
 
 # Split and sort words to letter, counting each letter each time it occurs
@@ -33,9 +22,12 @@ def deconstruct(word):
 
 
 def check_file(word):
+	# word length for comparison
+	word_length = len(word)
+
 	# Open file
 	dict_file = open(filename, "r")
-	print("opened " + dict_file.name)
+	print("opened " + dict_file.name) # pointless, really
 
 	word_list = []
 
@@ -47,25 +39,37 @@ def check_file(word):
 		line_length = len(line)
 
 		# If the counts from each item and the user_input match, add word to list
-		if letter_count == line_length:
+		if word_length == line_length:
 			# Make sorted split of word
 			test = deconstruct(line)
 
 			if test == word:
 				# Add to the list
-				word_list.append(test)
-				print(line)
+				word_list.append(line)
+				# print(line)
+
+
 
 	# Close file
 	dict_file.close()
-	print("closed " + dict_file.name)
+	print("closed " + dict_file.name) # pointless, really
+
+	# return the list of matching words
+	return word_list
 
 
 def main():
-	# Print the deconstructed user input
-	#print(dictionary)
+	# take user input
+	user_input = input("word: ")
 
-	check_file(dictionary)
+	# deconstruct user input
+	dictionary = deconstruct(user_input)
+
+	# check if the word has an anagram counterpart
+	words = check_file(dictionary)
+
+	# print the list
+	print(words)
 
 
 if __name__ == "__main__":
