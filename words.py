@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-
 filename = "words_alpha.txt"
-
 
 # Split and sort words to letter, counting each letter each time it occurs
 def deconstruct(word):
@@ -47,7 +45,6 @@ def check_file(word):
 				# Add to the list
 				word_list.append(line)
 				# print(line)
-
 
 
 	# Close file
