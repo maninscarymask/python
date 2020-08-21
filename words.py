@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-user_input = input("word: ")
 
+filename = "words_alpha.txt"
+user_input = input("word: ")
 letter_count = len(user_input)
 
 # Clean up the user input word
@@ -13,6 +14,7 @@ for letter in user_input:
 		dictionary[letter] = 1
 dictionary_items = dictionary.items()
 dictionary = sorted(dictionary_items)
+
 
 # Split and sort words to letter, counting each letter each time it occurs
 def deconstruct(word):
@@ -30,10 +32,11 @@ def deconstruct(word):
 	hold = sorted(hold_items)
 	return hold
 
+
 def check_file(word):
 	# Open file
-	dict_file = open("dict.txt", "r")
-	print("opened dict.txt")
+	dict_file = open(filename, "r")
+	print("opened " + dict_file.name)
 
 	word_list = []
 
@@ -53,24 +56,18 @@ def check_file(word):
 				# Add to the list
 				word_list.append(test)
 				print(line)
-	
 
-	# complete list of length-matched words
-	#print(word_list)
-	
 	# Close file
 	dict_file.close()
-	print("closed dict.txt")
+	print("closed " + dict_file.name)
 
 
 def main():
-	# Split the user_input to a dictionary
-	#ui = deconstruct(user_input)
-
 	# Print the deconstructed user input
-	print(dictionary)
+	#print(dictionary)
 
 	check_file(dictionary)
+
 
 if __name__ == "__main__":
 	main()
