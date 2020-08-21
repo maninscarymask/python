@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 filename = "words_alpha.txt"
 user_input = input("word: ")
 letter_count = len(user_input)
